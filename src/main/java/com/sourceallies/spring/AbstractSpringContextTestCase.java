@@ -38,7 +38,7 @@ import com.sourceallies.spring.exception.MissingComponentException;
 
 public abstract class AbstractSpringContextTestCase {
 
-	private GenericXmlApplicationContext context;
+	private GenericXmlApplicationContext context = new GenericXmlApplicationContext();
 	private Set<String> ignoredClassNames;
 	private Set<String> ignoredPackages;
 	private MessageUtil messageUtil = new MessageUtil();
@@ -46,7 +46,6 @@ public abstract class AbstractSpringContextTestCase {
 
 	@Before
 	public void setUp(){
-		context = new GenericXmlApplicationContext();
 		context.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding());
 	
 		context.getBeanFactory().registerScope("session", new SessionScope());
@@ -149,6 +148,7 @@ public abstract class AbstractSpringContextTestCase {
 	
 	private void loadContext(){
 		if(!loaded){
+			System.out.println("loading context");
 			context.load(getClass(), getClass().getSimpleName() + "-context.xml");
 			loaded = true;
 		}
