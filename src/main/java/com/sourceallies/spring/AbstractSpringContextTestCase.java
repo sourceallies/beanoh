@@ -22,7 +22,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Before;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.parsing.BeanDefinitionParsingException;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
@@ -37,6 +39,7 @@ import org.springframework.web.context.request.SessionScope;
 
 import com.sourceallies.spring.exception.MessageUtil;
 import com.sourceallies.spring.exception.MissingComponentException;
+import com.sourceallies.spring.exception.MissingConfigurationException;
 import com.sourceallies.spring.util.DefaultContextLocationBuilder;
 
 public abstract class AbstractSpringContextTestCase {
@@ -44,6 +47,7 @@ public abstract class AbstractSpringContextTestCase {
 	private ClassPathXmlApplicationContext context;
 	private Set<String> ignoredClassNames;
 	private Set<String> ignoredPackages;
+	private Set<String> contextLocations;
 	private MessageUtil messageUtil = new MessageUtil();
 	private DefaultContextLocationBuilder defaultContextLocationBuilder = new DefaultContextLocationBuilder();
 
@@ -51,6 +55,7 @@ public abstract class AbstractSpringContextTestCase {
 	public void setUp(){
 		ignoredClassNames = new HashSet<String>();
 		ignoredPackages = new HashSet<String>();
+		contextLocations = new HashSet<String>();
 	}
 
 	public void assertContextLoading() {
@@ -86,11 +91,11 @@ public abstract class AbstractSpringContextTestCase {
 					"There are beans marked with '@Component' in the classpath that are not configured by Spring. "
 							+ "Either configure these beans or ignore them with the 'ignoreClassNames' or 'ignorePackages' method.\n"
 							+ "Components not in Spring:"
-							+ missingComponentList(scannedComponents));
+							+ missingList(scannedComponents));
 		}
 	}
-
-	private String missingComponentList(Set<String> missingComponents) {
+	
+	private String missingList(Set<String> missingComponents) {
 		return messageUtil.list(new ArrayList<String>(missingComponents));
 	}
 
@@ -103,6 +108,12 @@ public abstract class AbstractSpringContextTestCase {
 	public void ignorePackages(String... packages) {
 		for (String pakage : packages) {
 			ignoredPackages.add(pakage);
+		}
+	}
+	
+	public void registerContextLocation(String... newContextLocations){
+		for(String contextLocation : newContextLocations){
+			contextLocations.add(contextLocation);
 		}
 	}
 
@@ -143,10 +154,20 @@ public abstract class AbstractSpringContextTestCase {
 	
 	private void loadContext(){
 		if(context == null){
-			String contextName = defaultContextLocationBuilder.build(getClass());
-			context = new ClassPathXmlApplicationContext(new String[]{contextName}, false);
+			if(contextLocations.size() == 0){
+				contextLocations.add(defaultContextLocationBuilder.build(getClass()));
+			}
+			context = new ClassPathXmlApplicationContext(contextLocations.toArray(new String[]{}), false);
 			context.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding());
-			context.refresh();
+			try{
+				context.refresh();
+			}catch(BeanDefinitionParsingException e){
+				throw e;
+			}catch(BeanDefinitionStoreException e){
+				throw new MissingConfigurationException("Unable to locate one of the configuration location(s):" + 
+						missingList(contextLocations) + 
+						"\nUse the 'registerContextLocation' method to configure custom configuration location(s).");
+			}
 			
 			context.getBeanFactory().registerScope("session", new SessionScope());
 			context.getBeanFactory().registerScope("request", new RequestScope());
