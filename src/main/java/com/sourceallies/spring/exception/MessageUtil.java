@@ -13,7 +13,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
-*/
+ */
 
 package com.sourceallies.spring.exception;
 
@@ -27,7 +27,7 @@ public class MessageUtil {
 		List<String> sortedComponents = new ArrayList<String>(messages);
 		Collections.sort(sortedComponents);
 		String output = "";
-		for(String component : sortedComponents){
+		for (String component : sortedComponents) {
 			output += "\n" + component;
 		}
 		return output;

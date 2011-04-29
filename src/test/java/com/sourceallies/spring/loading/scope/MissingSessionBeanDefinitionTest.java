@@ -13,20 +13,19 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
-*/
+ */
 
 package com.sourceallies.spring.loading.scope;
 
 import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.sourceallies.spring.BeanCreationExceptionTestCase;
 
-@ContextConfiguration
-public class MissingSessionBeanDefinitionTest extends BeanCreationExceptionTestCase{
-	
+public class MissingSessionBeanDefinitionTest extends
+		BeanCreationExceptionTestCase {
+
 	@Test
-	public void testMissing(){
+	public void testMissing() {
 		assertMissing("homeAddress");
 	}
 }

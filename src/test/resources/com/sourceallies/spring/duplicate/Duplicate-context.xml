@@ -1,4 +1,5 @@
-/*
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
 Copyright (c) 2011  Source Allies
 
 This library is free software; you can redistribute it and/or
@@ -13,10 +14,12 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
- */
+-->
 
-package com.sourceallies.test;
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-public class Address {
+		<bean id="person" class="com.sourceallies.test.Person"/>
 
-}
+</beans>

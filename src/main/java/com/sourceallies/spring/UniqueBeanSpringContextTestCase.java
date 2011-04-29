@@ -15,8 +15,13 @@ License along with this library; if not, please visit
 http://www.gnu.org/licenses/lgpl-3.0.txt.
  */
 
-package com.sourceallies.test;
+package com.sourceallies.spring;
 
-public class Address {
 
+public class UniqueBeanSpringContextTestCase extends AbstractSpringContextTestCase{
+
+	@Override
+	public boolean allowBeanDefinitionOverriding() {
+		return false;
+	}
 }

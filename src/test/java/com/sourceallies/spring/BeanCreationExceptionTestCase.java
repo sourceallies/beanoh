@@ -13,7 +13,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
-*/
+ */
 
 package com.sourceallies.spring;
 
@@ -21,19 +21,18 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.springframework.beans.factory.BeanCreationException;
-import org.springframework.test.context.ContextConfiguration;
 
-import com.sourceallies.spring.SpringContextTestCase;
+public abstract class BeanCreationExceptionTestCase extends
+		SpringContextTestCase {
 
-public abstract class BeanCreationExceptionTestCase extends SpringContextTestCase{
-	
-	public void assertMissing(String missingBeanId){
-		try{
+	public void assertMissing(String missingBeanId) {
+		try {
 			assertContextLoading();
 			fail();
-			
-		}catch(BeanCreationException e){
-			assertTrue(e.getMessage().contains("No bean named '" + missingBeanId + "' is defined"));
+
+		} catch (BeanCreationException e) {
+			assertTrue(e.getMessage().contains(
+					"No bean named '" + missingBeanId + "' is defined"));
 		}
 	}
 }

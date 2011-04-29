@@ -13,22 +13,20 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
-*/
+ */
 
 package com.sourceallies.spring.exception;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.sourceallies.spring.exception.MessageUtil;
-
 public class MessageUtilTest {
 
 	@Test
-	public void testList(){
+	public void testList() {
 		MessageUtil util = new MessageUtil();
 		String output = util.list(Arrays.asList("Bb", "Aa", "Cc"));
 		assertEquals("\nAa\nBb\nCc", output);

@@ -13,7 +13,7 @@ Lesser General Public License for more details.
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, please visit 
 http://www.gnu.org/licenses/lgpl-3.0.txt.
-*/
+ */
 
 package com.sourceallies.spring.component;
 
@@ -21,44 +21,41 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
 
 import com.sourceallies.spring.SpringContextTestCase;
 import com.sourceallies.spring.exception.MissingComponentException;
 
-@ContextConfiguration
-public class MissingComponentTest extends SpringContextTestCase{
-	
+public class MissingComponentTest extends SpringContextTestCase {
+
 	@Test
-	public void testScanning(){
-		try{
+	public void testScanning() {
+		try {
 			assertComponentsInContext("com.sourceallies");
 			fail();
-		}catch(MissingComponentException e){
-			assertEquals("There are beans marked with '@Component' in the classpath that are not configured by Spring. " +
-					"Either configure these beans or ignore them with the 'ignoreClassNames' or 'ignorePackages' method.\n" +
-					"Components not in Spring:\n" +
-					"com.sourceallies.b.B\n" +
-					"com.sourceallies.c.C\n" +
-					"com.sourceallies.test.Person", e.getMessage());
+		} catch (MissingComponentException e) {
+			assertEquals(
+					"There are beans marked with '@Component' in the classpath that are not configured by Spring. "
+							+ "Either configure these beans or ignore them with the 'ignoreClassNames' or 'ignorePackages' method.\n"
+							+ "Components not in Spring:\n"
+							+ "com.sourceallies.b.B\n"
+							+ "com.sourceallies.c.C\n"
+							+ "com.sourceallies.test.Person", e.getMessage());
 		}
 	}
-	
+
 	@Test
-	public void testIgnoreClassNames(){
-		ignoreClassNames("com.sourceallies.b.B",
-				"com.sourceallies.c.C",
-		"com.sourceallies.test.Person");
-		
+	public void testIgnoreClassNames() {
+		ignoreClassNames("com.sourceallies.b.B", "com.sourceallies.c.C",
+				"com.sourceallies.test.Person");
+
 		assertComponentsInContext("com.sourceallies");
 	}
-	
+
 	@Test
-	public void testIgnorePackages(){
-		ignorePackages("com.sourceallies.b",
-				"com.sourceallies.c",
+	public void testIgnorePackages() {
+		ignorePackages("com.sourceallies.b", "com.sourceallies.c",
 				"com.sourceallies.test");
-		
+
 		assertComponentsInContext("com.sourceallies");
 	}
 }
