@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 public class Person {
 
 	private List<Address> addresses;
+	private boolean married;
 
 	public List<Address> getAddresses() {
 		return addresses;
@@ -32,5 +33,13 @@ public class Person {
 
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
+	}
+
+	public boolean isMarried() {
+		return married;
+	}
+
+	public void setMarried(boolean married) {
+		this.married = married;
 	}
 }

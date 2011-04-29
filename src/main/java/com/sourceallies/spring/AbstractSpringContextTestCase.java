@@ -24,7 +24,9 @@ import java.util.Set;
 import org.junit.Before;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
-import org.springframework.context.support.GenericXmlApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.stereotype.Component;
@@ -35,25 +37,18 @@ import org.springframework.web.context.request.SessionScope;
 
 import com.sourceallies.spring.exception.MessageUtil;
 import com.sourceallies.spring.exception.MissingComponentException;
+import com.sourceallies.spring.util.DefaultContextLocationBuilder;
 
 public abstract class AbstractSpringContextTestCase {
 
-	private GenericXmlApplicationContext context = new GenericXmlApplicationContext();
+	private ClassPathXmlApplicationContext context;
 	private Set<String> ignoredClassNames;
 	private Set<String> ignoredPackages;
 	private MessageUtil messageUtil = new MessageUtil();
-	private boolean loaded = false;
+	private DefaultContextLocationBuilder defaultContextLocationBuilder = new DefaultContextLocationBuilder();
 
 	@Before
 	public void setUp(){
-		context.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding());
-	
-		context.getBeanFactory().registerScope("session", new SessionScope());
-		context.getBeanFactory().registerScope("request", new RequestScope());
-		MockHttpServletRequest request = new MockHttpServletRequest();
-		ServletRequestAttributes attributes = new ServletRequestAttributes(
-				request);
-		RequestContextHolder.setRequestAttributes(attributes);
 		ignoredClassNames = new HashSet<String>();
 		ignoredPackages = new HashSet<String>();
 	}
@@ -114,7 +109,7 @@ public abstract class AbstractSpringContextTestCase {
 	private void iterateBeanDefinitions(BeanDefinitionAction action) {
 		String[] names = context.getBeanDefinitionNames();
 		for (String name : names) {
-			BeanDefinition beanDefinition = context.getBeanDefinition(name);
+			BeanDefinition beanDefinition = context.getBeanFactory().getBeanDefinition(name);
 			if (!beanDefinition.isAbstract()) {
 				action.execute(name, beanDefinition);
 			}
@@ -147,10 +142,18 @@ public abstract class AbstractSpringContextTestCase {
 	}
 	
 	private void loadContext(){
-		if(!loaded){
-			System.out.println("loading context");
-			context.load(getClass(), getClass().getSimpleName() + "-context.xml");
-			loaded = true;
+		if(context == null){
+			String contextName = defaultContextLocationBuilder.build(getClass());
+			context = new ClassPathXmlApplicationContext(new String[]{contextName}, false);
+			context.setAllowBeanDefinitionOverriding(allowBeanDefinitionOverriding());
+			context.refresh();
+			
+			context.getBeanFactory().registerScope("session", new SessionScope());
+			context.getBeanFactory().registerScope("request", new RequestScope());
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			ServletRequestAttributes attributes = new ServletRequestAttributes(
+					request);
+			RequestContextHolder.setRequestAttributes(attributes);
 		}
 	}
 
