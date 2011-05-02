@@ -23,9 +23,9 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.springframework.beans.factory.parsing.BeanDefinitionParsingException;
 
-import com.sourceallies.beanoh.UniqueBeanSpringContextTestCase;
+import com.sourceallies.beanoh.UniqueBeanBeanohTestCase;
 
-public class DuplicateBeanTest extends UniqueBeanSpringContextTestCase {
+public class DuplicateBeanTest extends UniqueBeanBeanohTestCase {
 	
 	@Test
 	public void testDups() {

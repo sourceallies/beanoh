@@ -18,7 +18,7 @@ http://www.gnu.org/licenses/lgpl-3.0.txt.
 package com.sourceallies.beanoh;
 
 
-public class UniqueBeanSpringContextTestCase extends AbstractBeanohTestCase{
+public class UniqueBeanBeanohTestCase extends AbstractBeanohTestCase{
 
 	@Override
 	public boolean allowBeanDefinitionOverriding() {

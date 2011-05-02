@@ -22,11 +22,11 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.UniqueBeanSpringContextTestCase;
+import com.sourceallies.beanoh.UniqueBeanBeanohTestCase;
 import com.sourceallies.beanoh.exception.MissingConfigurationException;
 import com.sourceallies.beanoh.util.DefaultContextLocationBuilder;
 
-public class CustomConfigurationTest extends UniqueBeanSpringContextTestCase {
+public class CustomConfigurationTest extends UniqueBeanBeanohTestCase {
 	
 	@Test
 	public void testMissingConfiguration() {
