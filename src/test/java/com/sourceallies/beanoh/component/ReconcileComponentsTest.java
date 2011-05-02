@@ -19,9 +19,9 @@ package com.sourceallies.beanoh.component;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 
-public class ReconcileComponentsTest extends SpringContextTestCase {
+public class ReconcileComponentsTest extends BeanohTestCase {
 
 	@Test
 	public void testScanning() {

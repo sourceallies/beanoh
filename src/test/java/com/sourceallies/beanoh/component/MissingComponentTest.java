@@ -22,10 +22,10 @@ import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 import com.sourceallies.beanoh.exception.MissingComponentException;
 
-public class MissingComponentTest extends SpringContextTestCase {
+public class MissingComponentTest extends BeanohTestCase {
 
 	@Test
 	public void testScanning() {

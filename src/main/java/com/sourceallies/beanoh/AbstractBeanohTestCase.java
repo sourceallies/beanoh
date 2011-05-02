@@ -42,7 +42,7 @@ import com.sourceallies.beanoh.exception.MissingComponentException;
 import com.sourceallies.beanoh.exception.MissingConfigurationException;
 import com.sourceallies.beanoh.util.DefaultContextLocationBuilder;
 
-public abstract class AbstractSpringContextTestCase {
+public abstract class AbstractBeanohTestCase {
 
 	private ClassPathXmlApplicationContext context;
 	private Set<String> ignoredClassNames;

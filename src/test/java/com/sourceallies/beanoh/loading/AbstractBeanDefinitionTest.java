@@ -19,9 +19,9 @@ package com.sourceallies.beanoh.loading;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 
-public class AbstractBeanDefinitionTest extends SpringContextTestCase {
+public class AbstractBeanDefinitionTest extends BeanohTestCase {
 
 	@Test
 	public void testScanning() {

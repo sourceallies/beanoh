@@ -22,10 +22,10 @@ import static org.junit.Assert.fail;
 
 import org.springframework.beans.factory.BeanCreationException;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 
 public abstract class BeanCreationExceptionTestCase extends
-		SpringContextTestCase {
+		BeanohTestCase {
 
 	public void assertMissing(String missingBeanId) {
 		try {

@@ -19,9 +19,9 @@ package com.sourceallies.beanoh.component;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 
-public class ProxyComponentTest extends SpringContextTestCase {
+public class ProxyComponentTest extends BeanohTestCase {
 
 	@Test
 	public void testScanning() {

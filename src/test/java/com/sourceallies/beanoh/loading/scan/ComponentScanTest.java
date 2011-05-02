@@ -19,9 +19,9 @@ package com.sourceallies.beanoh.loading.scan;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.SpringContextTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 
-public class ComponentScanTest extends SpringContextTestCase {
+public class ComponentScanTest extends BeanohTestCase {
 
 	@Test
 	public void testScanning() {
