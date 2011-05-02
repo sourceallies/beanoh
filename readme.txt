@@ -1,6 +1,6 @@
 == Overview
-SpringContextTestCase is a simple way to verify you Spring context.
-Teams that leverage this test case spend less time focusing on 
+Beanoh is a simple way to verify you Spring context.
+Teams that leverage Beanoh spend less time focusing on 
 configuring Spring and more time adding business value.  
 
 == Features
@@ -15,7 +15,7 @@ mvn clean install
 == Using
 1. Verify Spring wiring
 ////////
-public class SomeTest extends SpringContextTestCase {
+public class SomeTest extends BeanohTestCase {
 
 	@Test
 	public void testSomething() {
@@ -26,7 +26,7 @@ public class SomeTest extends SpringContextTestCase {
 
 2. Reconcile @Components
 ////////
-public class SomeTest extends SpringContextTestCase {
+public class SomeTest extends BeanohTestCase {
 
 	@Test
 	public void testSomething() {
@@ -37,7 +37,7 @@ public class SomeTest extends SpringContextTestCase {
 
 3. Ensure Unique Bean Definitions
 ////////
-public class SomeTest extends UniqueBeanSpringContextTestCase {
+public class SomeTest extends UniqueBeanBeanohTestCase {
 
 	@Test
 	public void testSomething() {
