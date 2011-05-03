@@ -49,11 +49,11 @@ public class BeanohTestCase {
 	private DefaultContextLocationBuilder defaultContextLocationBuilder = new DefaultContextLocationBuilder();
 
 	@Before
-	public void setUp(){
+	public void setUp() {
 		ignoredClassNames = new HashSet<String>();
 		ignoredPackages = new HashSet<String>();
 	}
-	
+
 	public void assertContextLoading() {
 		assertContextLoading(false);
 	}
@@ -61,7 +61,7 @@ public class BeanohTestCase {
 	public void assertUniqueBeanContextLoading() {
 		assertContextLoading(true);
 	}
-	
+
 	private void assertContextLoading(boolean assertUniqueBeans) {
 		loadContext();
 		iterateBeanDefinitions(new BeanDefinitionAction() {
@@ -70,7 +70,8 @@ public class BeanohTestCase {
 				context.getBean(name);
 			}
 		});
-		if(assertUniqueBeans) context.assertUniqueBeans();
+		if (assertUniqueBeans)
+			context.assertUniqueBeans();
 	}
 
 	public void assertComponentsInContext(String basePackage) {
@@ -99,7 +100,7 @@ public class BeanohTestCase {
 							+ missingList(scannedComponents));
 		}
 	}
-	
+
 	private String missingList(Set<String> missingComponents) {
 		return messageUtil.list(new ArrayList<String>(missingComponents));
 	}
@@ -119,7 +120,8 @@ public class BeanohTestCase {
 	private void iterateBeanDefinitions(BeanDefinitionAction action) {
 		String[] names = context.getBeanDefinitionNames();
 		for (String name : names) {
-			BeanDefinition beanDefinition = context.getBeanFactory().getBeanDefinition(name);
+			BeanDefinition beanDefinition = context.getBeanFactory()
+					.getBeanDefinition(name);
 			if (!beanDefinition.isAbstract()) {
 				action.execute(name, beanDefinition);
 			}
@@ -150,21 +152,25 @@ public class BeanohTestCase {
 			scannedComponents.add(beanDefinition.getBeanClassName());
 		}
 	}
-	
-	private void loadContext(){
-		if(context == null){
-			String contextLocation = defaultContextLocationBuilder.build(getClass());
+
+	private void loadContext() {
+		if (context == null) {
+			String contextLocation = defaultContextLocationBuilder
+					.build(getClass());
 			context = new BeanohApplicationContext(contextLocation);
-			try{
+			try {
 				context.refresh();
-			}catch(BeanDefinitionParsingException e){
+			} catch (BeanDefinitionParsingException e) {
 				throw e;
-			}catch(BeanDefinitionStoreException e){
-				throw new MissingConfigurationException("Unable to locate " + contextLocation +".");
+			} catch (BeanDefinitionStoreException e) {
+				throw new MissingConfigurationException("Unable to locate "
+						+ contextLocation + ".");
 			}
-			
-			context.getBeanFactory().registerScope("session", new SessionScope());
-			context.getBeanFactory().registerScope("request", new RequestScope());
+
+			context.getBeanFactory().registerScope("session",
+					new SessionScope());
+			context.getBeanFactory().registerScope("request",
+					new RequestScope());
 			MockHttpServletRequest request = new MockHttpServletRequest();
 			ServletRequestAttributes attributes = new ServletRequestAttributes(
 					request);

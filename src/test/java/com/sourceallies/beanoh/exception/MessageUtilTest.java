@@ -23,8 +23,6 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
-import com.sourceallies.beanoh.exception.MessageUtil;
-
 public class MessageUtilTest {
 
 	@Test

@@ -21,22 +21,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.springframework.beans.factory.BeanDefinitionStoreException;
 
 import com.sourceallies.beanoh.BeanohTestCase;
-import com.sourceallies.beanoh.exception.MissingConfigurationException;
 import com.sourceallies.beanoh.util.DefaultContextLocationBuilder;
 
 public class MissingConfigurationTest extends BeanohTestCase {
-	
+
 	@Test
 	public void testMissingConfiguration() {
-		try{
+		try {
 			assertContextLoading();
 			fail();
-		}catch(Exception e){
-			String contextName = new DefaultContextLocationBuilder().build(getClass());
-			assertEquals("Unable to locate " + contextName + ".", e.getMessage());
+		} catch (Exception e) {
+			String contextName = new DefaultContextLocationBuilder()
+					.build(getClass());
+			assertEquals("Unable to locate " + contextName + ".",
+					e.getMessage());
 		}
 	}
 }

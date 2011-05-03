@@ -26,16 +26,18 @@ import com.sourceallies.beanoh.BeanohTestCase;
 import com.sourceallies.beanoh.exception.DuplicateBeanDefinitionException;
 
 public class DuplicateBeanTest extends BeanohTestCase {
-	
+
 	@Test
 	public void testDups() {
-		try{
+		try {
 			assertUniqueBeanContextLoading();
 			fail();
-		}catch(DuplicateBeanDefinitionException e){
-			assertEquals("Bean 'person' was defined 2 times:\n\n" +
-					"class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]\n" +
-					"class path resource [com/sourceallies/beanoh/duplicate/SecondDuplicate-context.xml]", e.getMessage());
+		} catch (DuplicateBeanDefinitionException e) {
+			assertEquals(
+					"Bean 'person' was defined 2 times:\n\n"
+							+ "class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]\n"
+							+ "class path resource [com/sourceallies/beanoh/duplicate/SecondDuplicate-context.xml]",
+					e.getMessage());
 		}
 	}
 }
