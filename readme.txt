@@ -1,5 +1,5 @@
 == Overview
-Beanoh is a simple way to verify you Spring context.
+Beanoh is a simple open source way to verify you Spring context.
 Teams that leverage Beanoh spend less time focusing on 
 configuring Spring and more time adding business value.  
 
