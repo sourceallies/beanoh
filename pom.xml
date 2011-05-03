@@ -1,141 +1,149 @@
-<!--
-Copyright (c) 2011  Source Allies
+<!-- Copyright (c) 2011 Source Allies This library is free software; you 
+	can redistribute it and/or modify it under the terms of the GNU Lesser General 
+	Public License as published by the Free Software Foundation version 3.0. 
+	This library is distributed in the hope that it will be useful, but WITHOUT 
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS 
+	FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more 
+	details. You should have received a copy of the GNU Lesser General Public 
+	License along with this library; if not, please visit http://www.gnu.org/licenses/lgpl-3.0.txt. -->
 
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation version 3.0.
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>beanoh</groupId>
+	<artifactId>beanoh</artifactId>
+	<name>Beanoh</name>
+	<version>0.0.1-SNAPSHOT</version>
 
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Lesser General Public License for more details.
+	<properties>
+		<spring-version>3.0.0.RELEASE</spring-version>
+	</properties>
 
-You should have received a copy of the GNU Lesser General Public
-License along with this library; if not, please visit 
-http://www.gnu.org/licenses/lgpl-3.0.txt.
--->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+		</dependency>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>beanoh</groupId>
-  <artifactId>beanoh</artifactId>
-  <name>Beanoh</name>
-  <version>0.0.1-SNAPSHOT</version>
-  
-  <properties>
-  	<spring-version>3.0.0.RELEASE</spring-version>
-  </properties>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>junit</groupId>
-  		<artifactId>junit</artifactId>
-  		<version>4.8.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>cglib</groupId>
-  		<artifactId>cglib</artifactId>
-  		<version>2.2</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>commons-logging</groupId>
-  		<artifactId>commons-logging</artifactId>
-  		<version>1.1.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>log4j</groupId>
-  		<artifactId>log4j</artifactId>
-  		<version>1.2.16</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-beans</artifactId>
-  		<version>${spring-version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-context</artifactId>
-  		<version>${spring-version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-core</artifactId>
-  		<version>${spring-version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-test</artifactId>
-  		<version>${spring-version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-web</artifactId>
-  		<version>${spring-version}</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>javax.servlet</groupId>
-  		<artifactId>servlet-api</artifactId>
-  		<version>2.5</version>
-  	</dependency>
-  	
-  	<!--Test Dependencies-->
-  	<dependency>
-  		<groupId>org.aspectj</groupId>
-  		<artifactId>aspectjweaver</artifactId>
-  		<version>1.6.8</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.hibernate</groupId>
-  		<artifactId>hibernate-core</artifactId>
-  		<version>3.3.2.GA</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.mockito</groupId>
-  		<artifactId>mockito-core</artifactId>
-  		<version>1.8.5</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-orm</artifactId>
-  		<version>${spring-version}</version>
-  		<scope>test</scope>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.springframework</groupId>
-  		<artifactId>spring-tx</artifactId>
-  		<version>${spring-version}</version>
-  		<scope>test</scope>
-  	</dependency>
-  </dependencies>
-  
-  <description>Beanoh is a simple open source way to verify your Spring context.  Teams that leverage Beanoh spend less time focusing on configuring Spring and more time adding business value.</description>
-  <url>https://github.com/sourceallies/beanoh/wiki</url>
-  <issueManagement>
-  	<system>GitHub Issue Tracker</system>
-  	<url>https://github.com/sourceallies/beanoh/issues</url>
-  </issueManagement>
-  <inceptionYear>2011</inceptionYear>
-  <scm>
-  	<connection>scm:git:https://github.com/sourceallies/beanoh.git</connection>
-  	<url>https://github.com/sourceallies/beanoh</url>
-  </scm>
-  <organization>
-  	<name>Source Allies</name>
-  	<url>http://www.sourceallies.com</url>
-  </organization>
-  <build>
-  	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-compiler-plugin</artifactId>
-			<configuration>
-				<source>1.6</source>
-				<target>1.6</target>
-			</configuration>
-		</plugin>
-  	</plugins>
-  </build>
+		<!--Test Dependencies -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>1.6.8</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>3.3.2.GA</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.8.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring-version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<description>Beanoh is a simple open source way to verify your Spring context.  Teams that leverage Beanoh spend less time focusing on configuring Spring and more time adding business value.</description>
+	<url>https://github.com/sourceallies/beanoh/wiki</url>
+	<issueManagement>
+		<system>GitHub Issue Tracker</system>
+		<url>https://github.com/sourceallies/beanoh/issues</url>
+	</issueManagement>
+	<inceptionYear>2011</inceptionYear>
+	<scm>
+		<connection>scm:git:https://github.com/sourceallies/beanoh.git</connection>
+		<url>https://github.com/sourceallies/beanoh</url>
+	</scm>
+	<organization>
+		<name>Source Allies</name>
+		<url>http://www.sourceallies.com</url>
+	</organization>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>source-jar</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
 </project>
