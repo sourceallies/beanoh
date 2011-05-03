@@ -37,11 +37,11 @@ public class SomeTest extends BeanohTestCase {
 
 3. Ensure Unique Bean Definitions
 ////////
-public class SomeTest extends UniqueBeanBeanohTestCase {
+public class SomeTest extends BeanohTestCase {
 
 	@Test
 	public void testSomething() {
-		assertContextLoading();
+		assertUniqueBeanContextLoading();
 	}
 }
 ////////

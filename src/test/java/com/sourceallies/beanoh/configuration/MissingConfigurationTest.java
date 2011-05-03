@@ -21,24 +21,22 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
 
-import com.sourceallies.beanoh.UniqueBeanBeanohTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
 import com.sourceallies.beanoh.exception.MissingConfigurationException;
 import com.sourceallies.beanoh.util.DefaultContextLocationBuilder;
 
-public class MissingConfigurationTest extends UniqueBeanBeanohTestCase {
+public class MissingConfigurationTest extends BeanohTestCase {
 	
 	@Test
 	public void testMissingConfiguration() {
 		try{
 			assertContextLoading();
 			fail();
-		}catch(MissingConfigurationException e){
+		}catch(Exception e){
 			String contextName = new DefaultContextLocationBuilder().build(getClass());
-			
-			assertEquals("Unable to locate one of the configuration location(s):\n" + contextName + 
-					"\nUse the 'registerContextLocation' method to configure custom configuration location(s).", 
-					e.getMessage());
+			assertEquals("Unable to locate " + contextName + ".", e.getMessage());
 		}
 	}
 }

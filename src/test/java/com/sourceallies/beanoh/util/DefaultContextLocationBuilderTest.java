@@ -11,7 +11,7 @@ public class DefaultContextLocationBuilderTest {
 	@Test
 	public void testBuild(){
 		DefaultContextLocationBuilder builder = new DefaultContextLocationBuilder();
-		assertEquals("java/lang/String-context.xml", builder.build(String.class));
+		assertEquals("java/lang/String-BeanohContext.xml", builder.build(String.class));
 	}
 
 }

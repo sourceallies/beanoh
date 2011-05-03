@@ -21,34 +21,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
-import org.springframework.beans.factory.parsing.BeanDefinitionParsingException;
 
-import com.sourceallies.beanoh.UniqueBeanBeanohTestCase;
+import com.sourceallies.beanoh.BeanohTestCase;
+import com.sourceallies.beanoh.exception.DuplicateBeanDefinitionException;
 
-public class DuplicateBeanTest extends UniqueBeanBeanohTestCase {
+public class DuplicateBeanTest extends BeanohTestCase {
 	
 	@Test
 	public void testDups() {
 		try{
-			assertContextLoading();
+			assertUniqueBeanContextLoading();
 			fail();
-		}catch(BeanDefinitionParsingException e){
-			assertEquals("Configuration problem: Failed to register bean definition with name 'person'\n" +
-					"Offending resource: class path resource " +
-					"[com/sourceallies/beanoh/duplicate/DuplicateBeanTest-context.xml]; " +
-					"nested exception is org.springframework.beans.factory.BeanDefinitionStoreException: " +
-					"Invalid bean definition with name 'person' defined in class path resource " +
-					"[com/sourceallies/beanoh/duplicate/DuplicateBeanTest-context.xml]: " +
-					"Cannot register bean definition [Generic bean: class [com.sourceallies.test.Person]; " +
-					"scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; " +
-					"autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; " +
-					"initMethodName=null; destroyMethodName=null; defined in class path resource " +
-					"[com/sourceallies/beanoh/duplicate/DuplicateBeanTest-context.xml]] for " +
-					"bean 'person': There is already [Generic bean: class [com.sourceallies.test.Person]; " +
-					"scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; " +
-					"autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; " +
-					"initMethodName=null; destroyMethodName=null; defined in class path resource " +
-					"[com/sourceallies/beanoh/duplicate/Duplicate-context.xml]] bound.", e.getMessage());
+		}catch(DuplicateBeanDefinitionException e){
+			assertEquals("Bean 'person' was defined 2 times:\n\n" +
+					"class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]\n" +
+					"class path resource [com/sourceallies/beanoh/duplicate/SecondDuplicate-context.xml]", e.getMessage());
 		}
 	}
 }
