@@ -18,21 +18,23 @@ http://www.gnu.org/licenses/lgpl-3.0.txt.
 package com.sourceallies.beanoh.exception;
 
 /**
- * Signals that the same bean definition exists multiple times
- * in the Spring context files.
+ * Signals that the same bean definition exists multiple times in the Spring
+ * context files.
  * 
  * @author David Kessler
- *
+ * 
  */
 public class DuplicateBeanDefinitionException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructs a DuplicateBeanDefinitionException with the specified detail message. 
-	 * A detail message is a String that describes this particular exception. 
+	 * Constructs a DuplicateBeanDefinitionException with the specified detail
+	 * message. A detail message is a String that describes this particular
+	 * exception.
 	 * 
-	 * @param message the String that contains a detailed message
+	 * @param message
+	 *            the String that contains a detailed message
 	 */
 	public DuplicateBeanDefinitionException(String message) {
 		super(message);

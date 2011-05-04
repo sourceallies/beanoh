@@ -13,15 +13,14 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
 /**
- * A proxy that delegates to a real Spring bean factory.
- * This collects the arguments that are passed to the
- * registerBeanDefinition method on the bean factory.
- * These bean definitions are inspected later by the
- * BeanohApplicationContext to determine if there are
- * duplicate bean definitions.
- *
+ * A proxy that delegates to a real Spring bean factory. This collects the
+ * arguments that are passed to the registerBeanDefinition method on the bean
+ * factory. These bean definitions are inspected later by the
+ * BeanohApplicationContext to determine if there are duplicate bean
+ * definitions.
+ * 
  * @author David Kessler
- *
+ * 
  */
 public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 
@@ -32,7 +31,9 @@ public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 	/**
 	 * Constructs a new proxy.
 	 * 
-	 * @param delegate the delegate that will be called when the proxy methods are invoked
+	 * @param delegate
+	 *            the delegate that will be called when the proxy methods are
+	 *            invoked
 	 */
 	public BeanohBeanFactoryMethodInterceptor(
 			DefaultListableBeanFactory delegate) {
@@ -42,8 +43,8 @@ public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 	}
 
 	/**
-	 * Intercepts method calls to the proxy and calls the corresponding method 
-	 * on the delegate.  
+	 * Intercepts method calls to the proxy and calls the corresponding method
+	 * on the delegate.
 	 * 
 	 * Collects bean definitions that are registered for later inspection.
 	 */
@@ -69,7 +70,8 @@ public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 	/**
 	 * Provides access to the bean definitions that this proxy collects.
 	 * 
-	 * @return map of bean definition names and a list of definitions with that name
+	 * @return map of bean definition names and a list of definitions with that
+	 *         name
 	 */
 	public Map<String, List<BeanDefinition>> getBeanDefinitionMap() {
 		return beanDefinitionMap;

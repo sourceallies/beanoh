@@ -16,12 +16,12 @@ import com.sourceallies.beanoh.exception.DuplicateBeanDefinitionException;
 import com.sourceallies.beanoh.exception.MessageUtil;
 
 /**
- * Wraps XML context loading in order to track loaded bean definitions.
- * This information is used to determine if duplicate bean definitions
- * have been loaded
+ * Wraps XML context loading in order to track loaded bean definitions. This
+ * information is used to determine if duplicate bean definitions have been
+ * loaded
  * 
  * @author David Kessler
- *
+ * 
  */
 public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 
@@ -29,8 +29,8 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 	MessageUtil messageUtil = new MessageUtil();
 
 	/**
-	 * Constructs a new Spring application context based on the bootstrap context
-	 * location.
+	 * Constructs a new Spring application context based on the bootstrap
+	 * context location.
 	 * 
 	 * @param configLocation
 	 * @throws BeansException
@@ -57,9 +57,9 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 	}
 
 	/**
-	 * This will fail if there are duplicate beans in the Spring context.
-	 * Beans that are configured in the bootstrap context will not be
-	 * considered duplicate beans.
+	 * This will fail if there are duplicate beans in the Spring context. Beans
+	 * that are configured in the bootstrap context will not be considered
+	 * duplicate beans.
 	 */
 	public void assertUniqueBeans() {
 		for (BeanohBeanFactoryMethodInterceptor callback : callbacks) {
@@ -76,10 +76,10 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 					}
 				}
 				if (resourceDescriptions.size() > 1) {
-					throw new DuplicateBeanDefinitionException(
-							"Bean 'person' was defined "
-									+ resourceDescriptions.size() + " times:\n"
-									+ messageUtil.list(resourceDescriptions));
+					throw new DuplicateBeanDefinitionException("Bean '" + key
+							+ "' was defined " + resourceDescriptions.size()
+							+ " times:\n"
+							+ messageUtil.list(resourceDescriptions));
 				}
 			}
 		}

@@ -41,9 +41,9 @@ import com.sourceallies.beanoh.spring.wrapper.BeanohApplicationContext;
 import com.sourceallies.beanoh.util.DefaultContextLocationBuilder;
 
 /**
- * Beanoh is a simple open source way to verify you Spring context.
- * Teams that leverage Beanoh spend less time focusing on 
- * configuring Spring and more time adding business value.  
+ * Beanoh is a simple open source way to verify you Spring context. Teams that
+ * leverage Beanoh spend less time focusing on configuring Spring and more time
+ * adding business value.
  * 
  * @author David Kessler
  */
@@ -56,8 +56,7 @@ public class BeanohTestCase {
 	private DefaultContextLocationBuilder defaultContextLocationBuilder = new DefaultContextLocationBuilder();
 
 	/**
-	 * Clears the ignored class name and package lists 
-	 * before every test.
+	 * Clears the ignored class name and package lists before every test.
 	 */
 	@Before
 	public void setUp() {
@@ -66,23 +65,21 @@ public class BeanohTestCase {
 	}
 
 	/**
-	 * Loads every bean in the Spring context.
-	 * Import Spring context files in the bootstrap context.
-	 * BeanohTestCase looks for a Spring context in the classpath 
-	 * with the same name as the test plus "-BeanohContext.xml".  
-	 * For eaxmple 'com.sourceallies.anything.SomethingTest'
-	 * will use 'com.sourceallies.anything.SomethingTest-BeanohContext.xml' 
-	 * to bootstrap the Spring context.
+	 * Loads every bean in the Spring context. Import Spring context files in
+	 * the bootstrap context. BeanohTestCase looks for a Spring context in the
+	 * classpath with the same name as the test plus "-BeanohContext.xml". For
+	 * eaxmple 'com.sourceallies.anything.SomethingTest' will use
+	 * 'com.sourceallies.anything.SomethingTest-BeanohContext.xml' to bootstrap
+	 * the Spring context.
 	 */
 	public void assertContextLoading() {
 		assertContextLoading(false);
 	}
 
 	/**
-	 * Loads every bean in the Spring context.
-	 * This will fail if there are duplicate beans in the Spring context.
-	 * Beans that are configured in the bootstrap context will not be
-	 * considered duplicate beans.
+	 * Loads every bean in the Spring context. This will fail if there are
+	 * duplicate beans in the Spring context. Beans that are configured in the
+	 * bootstrap context will not be considered duplicate beans.
 	 */
 	public void assertUniqueBeanContextLoading() {
 		assertContextLoading(true);
@@ -92,11 +89,12 @@ public class BeanohTestCase {
 	 * Reconcile the beans marked with org.springframework.stereotype.Component
 	 * in the classpath with the beans loaded in the Spring context.
 	 * 
-	 * Ignore classes with the method ignoreClassNames and ignore packages
-	 * with the method ignorePackages.
+	 * Ignore classes with the method ignoreClassNames and ignore packages with
+	 * the method ignorePackages.
 	 * 
-	 * @param basePackage the base package in which classes annotated with
-	 * org.springframework.stereotype.Component will be located
+	 * @param basePackage
+	 *            the base package in which classes annotated with
+	 *            org.springframework.stereotype.Component will be located
 	 */
 	public void assertComponentsInContext(String basePackage) {
 		loadContext();
@@ -124,11 +122,14 @@ public class BeanohTestCase {
 							+ missingList(scannedComponents));
 		}
 	}
-	
+
 	/**
-	 * Registers class names that should be ignored when using assertComponentsInContext.
+	 * Registers class names that should be ignored when using
+	 * assertComponentsInContext.
 	 * 
-	 * @param classNames an array of class names that should be ignored when using assertComponentsInContext.
+	 * @param classNames
+	 *            an array of class names that should be ignored when using
+	 *            assertComponentsInContext.
 	 */
 	public void ignoreClassNames(String... classNames) {
 		for (String className : classNames) {
@@ -137,16 +138,19 @@ public class BeanohTestCase {
 	}
 
 	/**
-	 * Registers base packages that should be ignored when using assertComponentsInContext.
+	 * Registers base packages that should be ignored when using
+	 * assertComponentsInContext.
 	 * 
-	 * @param packages an array of base packages that should be ignored when using assertComponentsInContext.
+	 * @param packages
+	 *            an array of base packages that should be ignored when using
+	 *            assertComponentsInContext.
 	 */
 	public void ignorePackages(String... packages) {
 		for (String pakage : packages) {
 			ignoredPackages.add(pakage);
 		}
 	}
-	
+
 	private void assertContextLoading(boolean assertUniqueBeans) {
 		loadContext();
 		iterateBeanDefinitions(new BeanDefinitionAction() {
@@ -158,11 +162,10 @@ public class BeanohTestCase {
 		if (assertUniqueBeans)
 			context.assertUniqueBeans();
 	}
-	
+
 	private String missingList(Set<String> missingComponents) {
 		return messageUtil.list(new ArrayList<String>(missingComponents));
 	}
-	
 
 	private void iterateBeanDefinitions(BeanDefinitionAction action) {
 		String[] names = context.getBeanDefinitionNames();

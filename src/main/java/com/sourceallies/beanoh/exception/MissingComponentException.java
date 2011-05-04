@@ -22,17 +22,18 @@ package com.sourceallies.beanoh.exception;
  * was located in the classpath that was not loaded by Spring
  * 
  * @author David Kessler
- *
+ * 
  */
 public class MissingComponentException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Constructs a MissingComponentException with the specified detail message. 
-	 * A detail message is a String that describes this particular exception. 
+	 * Constructs a MissingComponentException with the specified detail message.
+	 * A detail message is a String that describes this particular exception.
 	 * 
-	 * @param message the String that contains a detailed message
+	 * @param message
+	 *            the String that contains a detailed message
 	 */
 	public MissingComponentException(String message) {
 		super(message);
