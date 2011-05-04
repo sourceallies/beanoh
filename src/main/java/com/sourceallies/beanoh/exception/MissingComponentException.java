@@ -17,11 +17,24 @@ http://www.gnu.org/licenses/lgpl-3.0.txt.
 
 package com.sourceallies.beanoh.exception;
 
+/**
+ * Signals that a class annotated with org.springframework.stereotype.Component
+ * was located in the classpath that was not loaded by Spring
+ * 
+ * @author David Kessler
+ *
+ */
 public class MissingComponentException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public MissingComponentException(String arg0) {
-		super(arg0);
+	/**
+	 * Constructs a MissingComponentException with the specified detail message. 
+	 * A detail message is a String that describes this particular exception. 
+	 * 
+	 * @param message the String that contains a detailed message
+	 */
+	public MissingComponentException(String message) {
+		super(message);
 	}
 }

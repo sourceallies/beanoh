@@ -52,7 +52,7 @@ public class SomeTest extends BeanohTestCase {
 == Test Design
 Beanoh requires a test bootstrap Spring context file.  BeanohTestCase looks
 for a Spring context in the classpath with the same name as the test
-plus "-BeanohContext.xml".  For eaxmple 'com.sourceallies.anything.SomethingTest'
+plus "-BeanohContext.xml".  For example 'com.sourceallies.anything.SomethingTest'
 will use 'com.sourceallies.anything.SomethingTest-BeanohContext.xml' to bootstrap
 the Spring context.  Add imports to this bootstrap context for each of the context 
 files that you wish to load.  If you need to override beans they must be added to

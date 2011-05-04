@@ -19,6 +19,13 @@ package com.sourceallies.beanoh;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 
+/**
+ * This interface provides functionality around bean definitions
+ * that can be executed later.
+ * 
+ * @author David Kessler
+ *
+ */
 public interface BeanDefinitionAction {
 	void execute(String name, BeanDefinition definition);
 }

@@ -15,11 +15,26 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.sourceallies.beanoh.exception.DuplicateBeanDefinitionException;
 import com.sourceallies.beanoh.exception.MessageUtil;
 
+/**
+ * Wraps XML context loading in order to track loaded bean definitions.
+ * This information is used to determine if duplicate bean definitions
+ * have been loaded
+ * 
+ * @author David Kessler
+ *
+ */
 public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 
 	List<BeanohBeanFactoryMethodInterceptor> callbacks;
 	MessageUtil messageUtil = new MessageUtil();
 
+	/**
+	 * Constructs a new Spring application context based on the bootstrap context
+	 * location.
+	 * 
+	 * @param configLocation
+	 * @throws BeansException
+	 */
 	public BeanohApplicationContext(String configLocation)
 			throws BeansException {
 		super(new String[] { configLocation }, false);
@@ -41,6 +56,11 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 		super.loadBeanDefinitions(proxy);
 	}
 
+	/**
+	 * This will fail if there are duplicate beans in the Spring context.
+	 * Beans that are configured in the bootstrap context will not be
+	 * considered duplicate beans.
+	 */
 	public void assertUniqueBeans() {
 		for (BeanohBeanFactoryMethodInterceptor callback : callbacks) {
 			Map<String, List<BeanDefinition>> beanDefinitionMap = callback

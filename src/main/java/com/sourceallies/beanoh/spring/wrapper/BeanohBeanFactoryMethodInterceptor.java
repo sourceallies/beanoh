@@ -12,12 +12,28 @@ import net.sf.cglib.proxy.MethodProxy;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 
+/**
+ * A proxy that delegates to a real Spring bean factory.
+ * This collects the arguments that are passed to the
+ * registerBeanDefinition method on the bean factory.
+ * These bean definitions are inspected later by the
+ * BeanohApplicationContext to determine if there are
+ * duplicate bean definitions.
+ *
+ * @author David Kessler
+ *
+ */
 public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 
 	private DefaultListableBeanFactory delegate;
 	private Class<? extends DefaultListableBeanFactory> delegateClass;
 	private Map<String, List<BeanDefinition>> beanDefinitionMap;
 
+	/**
+	 * Constructs a new proxy.
+	 * 
+	 * @param delegate the delegate that will be called when the proxy methods are invoked
+	 */
 	public BeanohBeanFactoryMethodInterceptor(
 			DefaultListableBeanFactory delegate) {
 		this.delegate = delegate;
@@ -25,6 +41,12 @@ public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 		beanDefinitionMap = new HashMap<String, List<BeanDefinition>>();
 	}
 
+	/**
+	 * Intercepts method calls to the proxy and calls the corresponding method 
+	 * on the delegate.  
+	 * 
+	 * Collects bean definitions that are registered for later inspection.
+	 */
 	@Override
 	public Object intercept(Object object, Method method, Object[] args,
 			MethodProxy methodProxy) throws Throwable {
@@ -44,6 +66,11 @@ public class BeanohBeanFactoryMethodInterceptor implements MethodInterceptor {
 		return delegateMethod.invoke(delegate, args);
 	}
 
+	/**
+	 * Provides access to the bean definitions that this proxy collects.
+	 * 
+	 * @return map of bean definition names and a list of definitions with that name
+	 */
 	public Map<String, List<BeanDefinition>> getBeanDefinitionMap() {
 		return beanDefinitionMap;
 	}

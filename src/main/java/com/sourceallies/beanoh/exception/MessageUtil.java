@@ -21,8 +21,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * A utility class that formats a list of messages for an error message.
+ * 
+ * @author David Kessler
+ *
+ */
 public class MessageUtil {
 
+	/**
+	 * Separates messages on different lines for error messages.
+	 * 
+	 * @param messages a list of messages to be formatted
+	 * @return a String containing a each message on a seperate line
+	 */
 	public String list(List<String> messages) {
 		List<String> sortedComponents = new ArrayList<String>(messages);
 		Collections.sort(sortedComponents);
