@@ -66,6 +66,7 @@ you do not want to add to your context.  Add
 'ignoreClassName("com.sourceallies.something.Anything");' to your test method
 instead of 'ignorePackages("com.sourceallies.something");'.  The method
 'ignorePackages' may ignore classes that you did not intend to ignore.
+
 2. Override environment specific beans in the bootstrap context.  For example
 JNDI references are environment specific and need to be overridden.
 ////////
