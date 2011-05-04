@@ -51,8 +51,8 @@ public class SomeTest extends BeanohTestCase {
 
 == Test Design
 Beanoh requires a test bootstrap Spring context file.  BeanohTestCase looks
-for a Spring context within the classpath with the same name as the test
-plus "-BeanohContext.xml".  For eacmple 'com.sourceallies.anything.SomethingTest'
+for a Spring context in the classpath with the same name as the test
+plus "-BeanohContext.xml".  For eaxmple 'com.sourceallies.anything.SomethingTest'
 will use 'com.sourceallies.anything.SomethingTest-BeanohContext.xml' to bootstrap
 the Spring context.  Add imports to this bootstrap context for each of the context 
 files that you wish to load.  If you need to override beans they must be added to
@@ -61,7 +61,7 @@ this bootstrap context in order to not count as a duplicate bean definition.
 == Best Practices
 1. Ignore classes annotated with @Component explicitly rather than by package.
 For example if you run 'assertComponentsInContext("com.sourceallies");' and it
-fails on a bean "com.sourceallies.something.Anything" in a dependant jar that
+fails on a bean "com.sourceallies.something.Anything" in a dependent jar that
 you do not want to add to your context.  Add 
 'ignoreClassName("com.sourceallies.something.Anything");' to your test method
 instead of 'ignorePackages("com.sourceallies.something");'.  The method
