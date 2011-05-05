@@ -55,7 +55,7 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 	 */
 	public BeanohApplicationContext(String configLocation)
 			throws BeansException {
-		super(new String[] { configLocation }, false);
+		super(new String[] { configLocation , "com/sourceallies/beanoh/spring/Base-BeanohContext.xml"}, false);
 		callbacks = new ArrayList<BeanohBeanFactoryMethodInterceptor>();
 	}
 

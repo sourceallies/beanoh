@@ -1,5 +1,5 @@
 == Overview
-Beanoh is a simple open source way to verify you Spring context.
+Beanoh, pronounced \'beanˌō\, is a simple open source way to verify you Spring context.
 Teams that leverage Beanoh spend less time focusing on 
 configuring Spring and more time adding business value.  
 
@@ -81,7 +81,7 @@ A simple way to override this bean is to use Mockito to create mock beans.
 While this worked for most beans, I received errors when I wired up mock DataSources. 
 Instead I used embedded databases to replace real DataSources.
 /////////////
-<jdbc:embedded-database id="dataSource" type="H2"/>
+<bean id="dataSource" parent="beanohDataSource"/>
 ////////////
 
 3. Setup system properties in a @BeforeClass method.
