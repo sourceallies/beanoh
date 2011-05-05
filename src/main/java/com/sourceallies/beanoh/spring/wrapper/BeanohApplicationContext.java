@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import net.sf.cglib.proxy.Enhancer;
 
@@ -78,28 +79,32 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 	 * that are configured in the bootstrap context will not be considered
 	 * duplicate beans.
 	 */
-	public void assertUniqueBeans() {
+	public void assertUniqueBeans(Set<String> ignoredDuplicateBeanNames) {
 		for (BeanohBeanFactoryMethodInterceptor callback : callbacks) {
 			Map<String, List<BeanDefinition>> beanDefinitionMap = callback
 					.getBeanDefinitionMap();
 			for (String key : beanDefinitionMap.keySet()) {
-				List<BeanDefinition> definitions = beanDefinitionMap.get(key);
-				List<String> resourceDescriptions = new ArrayList<String>();
-				for (BeanDefinition definition : definitions) {
-					String resourceDescription = definition
-							.getResourceDescription();
-					if (resourceDescription == null) {
-						resourceDescription = definition.getBeanClassName();
+				if (!ignoredDuplicateBeanNames.contains(key)) {
+					List<BeanDefinition> definitions = beanDefinitionMap
+							.get(key);
+					List<String> resourceDescriptions = new ArrayList<String>();
+					for (BeanDefinition definition : definitions) {
+						String resourceDescription = definition
+								.getResourceDescription();
+						if (resourceDescription == null) {
+							resourceDescription = definition.getBeanClassName();
+						}
+						if (!resourceDescription
+								.endsWith("-BeanohContext.xml]")) {
+							resourceDescriptions.add(resourceDescription);
+						}
 					}
-					if (!resourceDescription.endsWith("-BeanohContext.xml]")) {
-						resourceDescriptions.add(resourceDescription);
+					if (resourceDescriptions.size() > 1) {
+						throw new DuplicateBeanDefinitionException("Bean '"
+								+ key + "' was defined "
+								+ resourceDescriptions.size() + " times:\n"
+								+ messageUtil.list(resourceDescriptions));
 					}
-				}
-				if (resourceDescriptions.size() > 1) {
-					throw new DuplicateBeanDefinitionException("Bean '" + key
-							+ "' was defined " + resourceDescriptions.size()
-							+ " times:\n"
-							+ messageUtil.list(resourceDescriptions));
 				}
 			}
 		}

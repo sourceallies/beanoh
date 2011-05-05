@@ -52,16 +52,19 @@ public class BeanohTestCase {
 	private BeanohApplicationContext context;
 	private Set<String> ignoredClassNames;
 	private Set<String> ignoredPackages;
+	private Set<String> ignoredDuplicateBeanNames;
 	private MessageUtil messageUtil = new MessageUtil();
 	private DefaultContextLocationBuilder defaultContextLocationBuilder = new DefaultContextLocationBuilder();
 
 	/**
-	 * Clears the ignored class name and package lists before every test.
+	 * Clears the ignored class name, package, and duplicate bean names lists
+	 * before every test.
 	 */
 	@Before
 	public void setUp() {
 		ignoredClassNames = new HashSet<String>();
 		ignoredPackages = new HashSet<String>();
+		ignoredDuplicateBeanNames = new HashSet<String>();
 	}
 
 	/**
@@ -80,6 +83,8 @@ public class BeanohTestCase {
 	 * Loads every bean in the Spring context. This will fail if there are
 	 * duplicate beans in the Spring context. Beans that are configured in the
 	 * bootstrap context will not be considered duplicate beans.
+	 * 
+	 * Ignore duplicate bean names with the method ignoredDuplicateBeanNames.
 	 */
 	public void assertUniqueBeanContextLoading() {
 		assertContextLoading(true);
@@ -151,6 +156,20 @@ public class BeanohTestCase {
 		}
 	}
 
+	/**
+	 * Registers bean names that should be ignored when using
+	 * assertUniqueBeanContextLoading.
+	 * 
+	 * @param beanNames
+	 *            an array of bean names that should be ignored when using
+	 *            assertUniqueBeanContextLoading.
+	 */
+	public void ignoreDuplicateBeanNames(String... beanNames) {
+		for (String beanName : beanNames) {
+			ignoredDuplicateBeanNames.add(beanName);
+		}
+	}
+
 	private void assertContextLoading(boolean assertUniqueBeans) {
 		loadContext();
 		iterateBeanDefinitions(new BeanDefinitionAction() {
@@ -160,7 +179,7 @@ public class BeanohTestCase {
 			}
 		});
 		if (assertUniqueBeans)
-			context.assertUniqueBeans();
+			context.assertUniqueBeans(ignoredDuplicateBeanNames);
 	}
 
 	private String missingList(Set<String> missingComponents) {
