@@ -34,7 +34,9 @@ public class DuplicateAopBeanTest extends BeanohTestCase {
 			fail();
 		} catch (DuplicateBeanDefinitionException e) {
 			assertEquals(
-					"Bean 'personPointcut' was defined 2 times:\n\n"
+					"Bean 'personPointcut' was defined 2 times.\n" +
+					"Either remove duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method.\n" +
+					"Configuration locations:\n"
 							+ "org.springframework.aop.aspectj.AspectJExpressionPointcut\n"
 							+ "org.springframework.aop.aspectj.AspectJExpressionPointcut",
 					e.getMessage());

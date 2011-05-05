@@ -102,7 +102,9 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 					if (resourceDescriptions.size() > 1) {
 						throw new DuplicateBeanDefinitionException("Bean '"
 								+ key + "' was defined "
-								+ resourceDescriptions.size() + " times:\n"
+								+ resourceDescriptions.size() + " times.\n"
+								+ "Either remove duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method.\n"
+								+ "Configuration locations:"
 								+ messageUtil.list(resourceDescriptions));
 					}
 				}

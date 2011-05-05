@@ -34,7 +34,9 @@ public class DuplicateBeanTest extends BeanohTestCase {
 			fail();
 		} catch (DuplicateBeanDefinitionException e) {
 			assertEquals(
-					"Bean 'person' was defined 2 times:\n\n"
+					"Bean 'person' was defined 2 times.\n" +
+					"Either remove duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method.\n" +
+					"Configuration locations:\n"
 							+ "class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]\n"
 							+ "class path resource [com/sourceallies/beanoh/duplicate/SecondDuplicate-context.xml]",
 					e.getMessage());
