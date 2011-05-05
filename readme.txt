@@ -84,6 +84,14 @@ Instead I used embedded databases to replace real DataSources.
 <jdbc:embedded-database id="dataSource" type="H2"/>
 ////////////
 
+3. Setup system properties in a @BeforeClass method.
+//////////
+@BeforeClass
+public static void setupProperties(){
+	System.setProperty("something", "someValue");
+}
+//////////
+
 == License
 Copyright (c) 2011  Source Allies
 
