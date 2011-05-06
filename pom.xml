@@ -14,7 +14,34 @@
 	<artifactId>beanoh</artifactId>
 	<name>Beanoh</name>
 	<version>0.0.1-SNAPSHOT</version>
-
+	<packaging>jar</packaging>
+	<description>Beanoh is a simple open source way to verify your Spring context.  Teams that leverage Beanoh spend less time focusing on configuring Spring and more time adding business value.</description>
+	<inceptionYear>2011</inceptionYear>
+	<organization>
+		<name>Source Allies</name>
+		<url>http://www.sourceallies.com</url>
+	</organization>
+	<developers>
+		<developer>
+			<name>David Kessler</name>
+		</developer>
+	</developers>
+	<url>https://github.com/sourceallies/beanoh/wiki</url>
+	<licenses>
+		<license>
+			<name>GNU Lesser General Public License</name>
+			<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		</license>
+	</licenses>
+	<scm>
+		<connection>scm:git:https://github.com/sourceallies/beanoh.git</connection>
+		<url>https://github.com/sourceallies/beanoh</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issue Tracker</system>
+		<url>https://github.com/sourceallies/beanoh/issues</url>
+	</issueManagement>
+	
 	<properties>
 		<spring-version>3.0.0.RELEASE</spring-version>
 	</properties>
@@ -102,23 +129,14 @@
 			<version>${spring-version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>1.8.0.10</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-	<description>Beanoh is a simple open source way to verify your Spring context.  Teams that leverage Beanoh spend less time focusing on configuring Spring and more time adding business value.</description>
-	<url>https://github.com/sourceallies/beanoh/wiki</url>
-	<issueManagement>
-		<system>GitHub Issue Tracker</system>
-		<url>https://github.com/sourceallies/beanoh/issues</url>
-	</issueManagement>
-	<inceptionYear>2011</inceptionYear>
-	<scm>
-		<connection>scm:git:https://github.com/sourceallies/beanoh.git</connection>
-		<url>https://github.com/sourceallies/beanoh</url>
-	</scm>
-	<organization>
-		<name>Source Allies</name>
-		<url>http://www.sourceallies.com</url>
-	</organization>
 	<build>
 		<plugins>
 			<plugin>
@@ -148,11 +166,23 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>2.7</version>
 				<configuration>
-					<show>private</show>
-					<nohelp>true</nohelp>
+					<show>public</show>
 				</configuration>
 			</plugin>
-		</plugins>
+			<!--<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		--></plugins>
 	</build>
 	<reporting>
 		<plugins>

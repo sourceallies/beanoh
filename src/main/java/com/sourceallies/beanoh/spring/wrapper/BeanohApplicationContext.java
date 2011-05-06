@@ -92,11 +92,12 @@ public class BeanohApplicationContext extends ClassPathXmlApplicationContext {
 						String resourceDescription = definition
 								.getResourceDescription();
 						if (resourceDescription == null) {
-							resourceDescription = definition.getBeanClassName();
-						}
-						if (!resourceDescription
+							resourceDescriptions.add(definition.getBeanClassName());
+						}else if (!resourceDescription
 								.endsWith("-BeanohContext.xml]")) {
-							resourceDescriptions.add(resourceDescription);
+							if(!resourceDescriptions.contains(resourceDescription)){
+								resourceDescriptions.add(resourceDescription);
+							}
 						}
 					}
 					if (resourceDescriptions.size() > 1) {

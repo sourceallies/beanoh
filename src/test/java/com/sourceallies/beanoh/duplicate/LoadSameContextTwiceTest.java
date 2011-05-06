@@ -34,12 +34,11 @@ public class LoadSameContextTwiceTest extends BeanohTestCase {
 			fail();
 		} catch (DuplicateBeanDefinitionException e) {
 			assertEquals(
-					"Bean 'person' was defined 2 times.\n" +
+					"Bean 'dataSource' was defined 2 times.\n" +
 					"Either remove duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method.\n" +
 					"Configuration locations:\n"
-							+ "class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]\n"
-							+ "class path resource [com/sourceallies/beanoh/duplicate/FirstDuplicate-context.xml]",
-					e.getMessage());
+							+ "org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean\n"
+							+ "org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean",				e.getMessage());
 		}
 	}
 }
