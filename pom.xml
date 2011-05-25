@@ -35,12 +35,20 @@
 	</licenses>
 	<scm>
 		<connection>scm:git:https://github.com/sourceallies/beanoh.git</connection>
+        <developerConnection>scm:git:https://github.com/sourceallies/beanoh.git</developerConnection>
 		<url>https://github.com/sourceallies/beanoh</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issue Tracker</system>
 		<url>https://github.com/sourceallies/beanoh/issues</url>
 	</issueManagement>
+    
+    <parent>
+       <groupId>org.sonatype.oss</groupId>
+       <artifactId>oss-parent</artifactId>
+       <version>7</version>
+    </parent>
+
 
 	<properties>
 		<spring-version>3.0.0.RELEASE</spring-version>
