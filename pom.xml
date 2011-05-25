@@ -53,6 +53,17 @@
 	<properties>
 		<spring-version>3.0.0.RELEASE</spring-version>
 	</properties>
+    
+    <dependencyManagement>
+        <dependencies>
+             <dependency>
+                <groupId>jaxen</groupId>
+                <artifactId>jaxen</artifactId>
+                <version>1.1.1</version>
+             </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 
 	<dependencies>
 		<dependency>
@@ -143,12 +154,7 @@
 			<version>1.8.0.10</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>jaxen</groupId>
-            <artifactId>jaxen</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>
