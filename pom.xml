@@ -12,7 +12,7 @@
 	<groupId>com.sourceallies.beanoh</groupId>
 	<artifactId>beanoh</artifactId>
 	<name>Beanoh</name>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Beanoh is a simple open source way to verify your Spring context.  Teams that leverage Beanoh spend less time focusing on configuring Spring and more time adding business value.</description>
 	<inceptionYear>2011</inceptionYear>
