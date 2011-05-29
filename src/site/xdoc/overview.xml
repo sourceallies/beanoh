@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>Overview</title>
+  </properties>
+
+
+  <body>
+    <section name="Overview">
+        <p>Beanoh, pronounced Bean-oh, is a simple open source way to verify your 
+        Spring context. Teams that leverage Beanoh spend less time focusing on 
+        configuring Spring and more time adding business value.</p>
+    </section>
+    <section name="Features">
+        <ol>
+        	<li>Verify that all of your beans are wired correctly</li>
+        	<li>Reconcile the beans marked with @Component in the classpath with the beans loaded in the Spring context</li>
+        	<li>Prevent duplicate bean definition overwriting</li>
+        </ol>
+    </section>
+    <section name="Building">
+        <source> mvn clean install</source>
+    </section>
+    <section name="Using">
+        <ol>
+        	<li>Verify Spring wiring
+<source>
+  public class SomeTest extends BeanohTestCase {
+	@Test
+	public void testSomething() {
+		assertContextLoading();
+	}
+  }
+</source>
+
+        	</li>
+        	<li>Reconcile @Components
+<source>
+  public class SomeTest extends BeanohTestCase {
+
+	@Test
+	public void testSomething() {
+		assertComponentsInContext("com.sourceallies");
+	}
+  }
+</source>
+
+        	</li>
+        	<li>Ensure Unique Bean Definitions
+<source>
+  public class SomeTest extends BeanohTestCase {
+
+	@Test
+	public void testSomething() {
+		assertUniqueBeanContextLoading();
+	}
+  }
+</source>
+
+        	</li>
+        </ol>
+    </section>
+    <section name="Test Design">
+        <p>Beanoh requires a test bootstrap Spring context file. BeanohTestCase 
+        looks for a Spring context in the classpath with the same name as the 
+        test plus "-BeanohContext.xml". For example 'com.sourceallies.anything.
+        SomethingTest' will use 'com.sourceallies.anything.SomethingTest-BeanohContext.xml' 
+        to bootstrap the Spring context. Add imports to this bootstrap context for 
+        each of the context files that you wish to load. If you need to override 
+        beans they must be added to this bootstrap context in order to not count 
+        as a duplicate bean definition.</p>
+    </section>
+        <section name="Best Practices">
+        <ol>
+        	<li>Ignore classes annotated with @Component explicitly rather 
+        	than by package. For example if you run 'assertComponentsInContext("com.sourceallies");' 
+        	and it fails on a bean "com.sourceallies.something.Anything" in a 
+        	dependent jar that you do not want to add to your context. Add 
+        	'ignoreClassName("com.sourceallies.something.Anything");' to your 
+        	test method instead of 'ignorePackages("com.sourceallies.something");'. 
+        	The method 'ignorePackages' may ignore classes that you did not 
+        	intend to ignore.</li>
+        	<li>Override environment specific beans in the bootstrap context. 
+        	For example JNDI references are environment specific and need to be overridden. 
+        	<source><![CDATA[ <jee:jndi-lookup id="testBean" jndi-name="jdbc/test"/>]]></source>
+        	A simple way to override this bean is to use Mockito to create mock beans. 
+        	<source>
+<![CDATA[  <bean id="testBean" class="org.mockito.Mockito" factory-method="mock">
+      <constructor-arg value="com.something.Foo" />
+  </bean>]]>
+  		</source>
+  		While this worked for most beans, I received errors when I wired 
+  		up mock DataSources. Instead I used embedded databases to replace 
+  		real DataSources. 
+  		
+        	<source><![CDATA[ <bean id="dataSource" parent="beanohDataSource"/>]]></source>
+        	</li>
+        	<li>
+        	Setup system properties in a @BeforeClass method. 
+        	<source>
+<![CDATA[  @BeforeClass
+public static void setupProperties(){
+	System.setProperty("something", "someValue");
+}]]>
+  		</source>
+        	</li>
+        </ol>
+    </section>
+    <section name="License">
+        <p>Copyright © 2011 Source Allies</p>
+	<p>This library is free software; you can redistribute it and/or modify 
+	it under the terms of the GNU Lesser General Public License as published 
+	by the Free Software Foundation version 3.0.</p>
+	<p>This library is distributed in the hope that it will be useful, but 
+	WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+	or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public 
+	License for more details.</p>
+	<p>You should have received a copy of the GNU Lesser General Public 
+	License along with this library; if not, please visit 
+	<a href="http://www.gnu.org/licenses/lgpl-3.0.txt">http://www.gnu.org/licenses/lgpl-3.0.txt</a>.</p>
+    </section>
+
+  </body>
+</document>

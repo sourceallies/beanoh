@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faqs xmlns="http://maven.apache.org/FML/1.0.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/FML/1.0.1 http://maven.apache.org/xsd/fml-1.0.1.xsd"
+  title="Frequently Asked Questions"
+  toplink="false">
+
+  <part id="general">
+    <title>General</title>
+
+    <faq id="spring-runner">
+      <question>
+        Why can't I just use '@RunWith(SpringJUnit4ClassRunner.class)' to verify my Spring context?
+      </question>
+      <answer>
+        <p>This will only load the singleton beans. Beanoh loads all bean scopes (singleton, prototype, request, session, global session).</p>
+      </answer>
+    </faq>
+
+    <faq id="why-reconcile">
+      <question>
+        Why should I reconcile the classes marked with '@Component' in my classpath with the beans in my Spring context?
+      </question>
+      <answer>
+        <p>It is fairly easy to forget to component-scan the packages that contain beans marked with '@Component'. 
+        Beanoh provides a simple way to ignore components that you do not want to load in Spring. 
+        This feature empowers developers to decide which components should be loaded.</p>
+      </answer>
+    </faq>
+
+    <faq id="duplicate-beans">
+      <question>
+        Is there any harm in having duplicate bean id's?
+      </question>
+      <answer>
+        <p>If multiple beans have the same id, the last bean loaded will win. This loading order is not guaranteed. 
+        If the bean definitions are not exactly the same, this can create subtle bugs that are very difficult to track down.</p>
+      </answer>
+    </faq>
+
+    <faq id="web-inf-content">
+      <question>
+        How do I import a Spring context file located in the WEB-INF folder?
+      </question>
+      <answer>
+        <p>Use a file resource.</p>
+        <source>&lt;import resource="file:WebContent/WEB-INF/spring-ws-servlet.xml"/&gt;</source>
+      </answer>
+    </faq>
+
+    <faq id="beanoh-datasource">
+      <question>
+        Why does 'assertUniqueBeanContextLoading' fail if I add a '&lt;jdbc:embedded-database&gt;' tag to my test bootstrap context.
+      </question>
+      <answer>
+        <p>The resulting 'org.springframework.beans.factory.config.BeanDefinition' returns null when you call the 
+        'getResourceDescription' method. This information ties the definition back to the context file in which it 
+        was defined. Bootstrap context bean definitions are excluded when Beanoh looks for duplicate bean definitions. 
+        However if 'getResourceDescription' returns null there is no way to determine if the definition came from the test bootstrap context.</p>
+        <p>Use this instead:</p>
+
+        <source>&lt;bean id="datasource" parent="beanohDataSource"/&gt;</source>
+      </answer>
+    </faq>
+  </part>
+
+</faqs>

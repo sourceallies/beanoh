@@ -1,0 +1,189 @@
+body {
+   background: none repeat scroll 0 0 #333333;
+   margin: 0;
+   padding: 0;
+}
+
+#outerwrap{
+  width: 975px;
+  margin: 0 auto;
+  background: none repeat scroll 0 0 #F2F1EC;
+}
+
+#contentBox {  
+  min-height:450px;
+}
+
+#left-corner{
+	float:left;	
+}
+
+#right-corner{
+	float:right;	
+}
+
+#banner {
+   background: none repeat scroll 0 0 #333333;
+   border-top: 1px solid #5f7641;
+   border-bottom: 0px solid #5f7641;
+}
+
+#leaf{
+   width: 975px;
+   border-top: 1px solid #5f7641;
+   border-bottom: 1px solid #5f7641;	
+}
+
+#leaf img{
+	width: 975px;	
+}
+
+h2 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #999;
+  background: url("../images/gradient.png") repeat-x scroll 0 -10px #ddd;
+  font-weight:900;
+  font-size: x-large;
+}
+h3 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #aaa;
+  background: url("../images/gradient.png") repeat-x scroll 0 -10px #eee;
+  font-weight: normal;
+  font-size: large;
+}
+h4 {
+  padding: 4px 4px 4px 6px;
+  border: 1px solid #bbb;
+  background: url("../images/gradient.png") repeat-x scroll 0 -10px #fff;
+  font-weight: normal;
+  font-size: large;
+}
+
+h2, h3, h4, h5 {
+   color: #7ea64b;
+   b
+}
+
+strong {
+   color: #7ea64b;
+}
+
+a:active, a:hover, a:visited{
+   color: #7ea64b;
+}
+
+#slogan{
+   color: #7ea64b;
+   font-size: 15px;
+   padding:5px 0px;
+}
+
+.xleft, .xright {
+   color: #7ea64b;
+}
+
+.powerword{
+   font-weight: bold;
+   font-size: 20px;
+   color: #2f4507;
+}
+
+#intro{
+  width: 975px;
+  background: url("../images/gradient.png") repeat-x scroll 0 -50px #7ea64b;
+  padding: 20px;
+  border-bottom: 2px solid #5f7641;
+}
+
+.intropanel{
+  width: 260px;
+  text-align: center;
+}
+
+.introcenter{
+  border-right: 1px solid #F2F1EC;
+  border-left: 1px solid #F2F1EC;
+}
+
+.clear{
+	height:0px;	
+}
+
+#bodyContent{
+	padding:25px;	
+}
+
+.alignleft{
+	text-align:left;	
+	width:50%;
+	padding-left:25px;
+	color: #7ea64b;
+}
+
+.alignright{
+	text-align:right;	
+	width:50%;	
+	padding-right:25px;
+	color: #7ea64b;
+}
+
+#footertable{
+	width:100%;	
+}
+
+#menu td{
+	padding: 5px 20px;	
+	border-right: 1px solid white;
+	font-size: 20px;
+	font-weight: bold;	
+	color: #2f4507;
+}
+
+#menu a{
+	color: #2f4507;
+}
+
+#navigation {
+	background: url("../images/gradient.png") repeat-x scroll 0 -50px #7ea64b;	
+}
+
+#submenu td{
+	padding: 5px 10px;	
+	border-right: 1px solid white;
+	font-size: 15px;
+	font-weight: bold;	
+	color: #2f4507;
+}
+
+#subnavigation {
+	background: url("../images/gradient.png") repeat-x scroll 0 -50px #7ea64b;	
+}
+
+.info-box{
+	padding: 20px 48px;
+}
+
+a img {
+	text-decoration: none;
+	border: 0 none;
+}
+
+.section-title{
+	color: #2f4507;	
+	font-size: 17px;
+	font-weight: bold;
+}
+
+dl{
+  border: 1px solid #999;
+  background: none repeat-x scroll 0 -10px white;
+  color: #7ea64b;
+}
+
+dt{
+  border: 0px solid #999;
+  font-weight:bold;
+  background: none repeat-x scroll 0 -10px white;
+  color: #7ea64b;
+}
