@@ -62,7 +62,6 @@ h4 {
 
 h2, h3, h4, h5 {
    color: #7ea64b;
-   b
 }
 
 strong {
@@ -107,7 +106,8 @@ a:active, a:hover, a:visited{
 }
 
 .clear{
-	height:0px;	
+	height:0px;
+	background: none repeat scroll 0 0 #333333;	
 }
 
 #bodyContent{
