@@ -9,6 +9,33 @@ configuring Spring and more time adding business value.  Visit our website at ht
    with the beans loaded in the Spring context
 3. Prevent duplicate bean definition overwriting
 
+=== Verify
+Beanoh is a simple way to verify all of the beans in your Spring context.  This lightweight tool 
+supplies quick feedback without firing up your container. Beanoh provides three simple 
+verification strategies:
+1. The first strategy retrieves all of the beans in the Spring context and verifies that they 
+are configured correctly.  
+2. The second strategy reconciles beans marked with org.springframework.stereotype.Component 
+in the classpath with the beans available in the Spring context.  
+3. The final strategy verifes that bean definitions within your Spring context are unique.
+
+Beanoh allows you to combine these strategies in a single test.
+
+
+=== Focus
+Beanoh helps you focus on adding busines value.  Switching your focus between coding and 
+configuring Spring is distracting.  While configuring Spring is absolutely necessary it 
+should not be your primary focus.  Beanoh encourages you to focus on coding while it 
+focuses on verifying your context.  Beanoh can help increase your productivity by 
+encouraging you to focus on adding business value.
+
+=== Control
+Beanoh uncovers Spring configuration errors and supplies timely information.  This tool 
+puts your team back in the driver's seat.  It identifies misconfigured beans, components 
+that are not scanned by Spring, and duplicate bean definitions.  Beanoh takes the mystery 
+out of Spring.  You don't have to be a Spring guru to take control of your Spring context.  
+Beanoh does the heavy lifting and empowers you to take control of your Spring context.
+
 == Building
 mvn clean install
 

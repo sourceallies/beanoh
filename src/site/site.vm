@@ -335,7 +335,7 @@
   <body class="composite">
     <div id="outerwrap">
 	    <div id="banner">
-	      <img id="logo" src="images/logos/beanoh.png"/>
+	      <a href="index.html"><img id="logo" src="images/logos/beanoh.png"/></a>
 	      <div id="slogan">Relieving the pressure of configuring Spring</div>
 	      <div class="clear">
 	      </div>
@@ -380,9 +380,21 @@
 					<td class="intropanel"><div class="powerword">Control</div></td>
 				</tr>
 				<tr>	
-					<td class="intropanel"><img src="images/circle.png"/></td>
-					<td class="intropanel introcenter"><img src="images/circle.png"/></td>
-					<td class="intropanel"><img src="images/circle.png"/></td>
+					<td class="intropanel">
+						<a href="overview.html#Verify">
+							<img src="images/circle.png"/>
+						</a>
+					</td>
+					<td class="intropanel introcenter">
+						<a href="overview.html#Focus">
+							<img src="images/circle.png"/>
+						</a>
+					</td>
+					<td class="intropanel">
+						<a href="overview.html#Control">
+							<img src="images/circle.png"/>
+						</a>
+					</td>
 				</tr>
 				<tr>
 					<td class="intropanel">Verify your Spring configuration.</td>
