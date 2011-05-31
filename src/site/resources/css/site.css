@@ -98,6 +98,8 @@ a:active, a:hover, a:visited{
 .intropanel{
   width: 260px;
   text-align: center;
+  color: #2f4507;
+  font-weight: bold;
 }
 
 .introcenter{
