@@ -338,7 +338,6 @@
 	      <img id="logo" src="images/logos/beanoh.png"/>
 	      <div id="slogan">Relieving the pressure of configuring Spring</div>
 	      <div class="clear">
-		<hr/>
 	      </div>
 	    </div>
 	   	<div id="navigation">
@@ -360,13 +359,13 @@
 	    <div id="subnavigation">
 	      <table id="submenu">
 	     		<tr>
-	     			<td><a href="project-summary.html">Summary</a></td
-	     			<td><a href="team-list.html">Team</a></td
-	     			<td><a href="license.html">License</a></td
-	     			<td><a href="issue-tracking.html">Issue Tracking</a></td
-	     			<td><a href="dependencies.html">Dependencies</a></td
-	     			<td><a href="source-repository.html">Source Repository</a></td
-	     			<td><a href="apidocs/index.html">JavaDocs</a></td
+	     			<td><a href="project-summary.html">Summary</a></td>
+	     			<td><a href="team-list.html">Team</a></td>
+	     			<td><a href="license.html">License</a></td>
+	     			<td><a href="issue-tracking.html">Issue Tracking</a></td>
+	     			<td><a href="dependencies.html">Dependencies</a></td>
+	     			<td><a href="source-repository.html">Source Repository</a></td>
+	     			<td><a href="apidocs/index.html">JavaDocs</a></td>
 	     		</tr>
 	     	</table>
 	    </div>
