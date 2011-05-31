@@ -145,6 +145,10 @@ a:active, a:hover, a:visited{
 	color: #2f4507;
 }
 
+#submenu a{
+	color: #7ea64b;
+}
+
 #navigation {
 	background: url("../images/gradient.png") repeat-x scroll 0 -50px #7ea64b;	
 }
