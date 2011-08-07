@@ -8,6 +8,15 @@
   <part id="general">
     <title>General</title>
 
+    <faq id="community">
+      <question>
+        Where can I get more answers?
+      </question>
+      <answer>
+        <p><a href="http://groups.google.com/group/beanoh">Beanoh Google Group (http://groups.google.com/group/beanoh)</a>.</p>
+      </answer>
+    </faq>
+
     <faq id="spring-runner">
       <question>
         Why can't I just use '@RunWith(SpringJUnit4ClassRunner.class)' to verify my Spring context?
