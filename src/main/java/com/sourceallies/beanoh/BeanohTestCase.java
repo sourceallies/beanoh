@@ -233,7 +233,7 @@ public class BeanohTestCase {
 				throw e;
 			} catch (BeanDefinitionStoreException e) {
 				throw new MissingConfigurationException("Unable to locate "
-						+ contextLocation + ".");
+						+ contextLocation + ".", e);
 			}
 
 			context.getBeanFactory().registerScope("session",

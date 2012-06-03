@@ -35,13 +35,15 @@ public class MissingConfigurationException extends RuntimeException {
 
 	/**
 	 * Constructs a MissingConfigurationException with the specified detail
-	 * message. A detail message is a String that describes this particular
+	 * message and preserve stack trace. A detail message is a String that describes this particular
 	 * exception.
 	 * 
 	 * @param message
 	 *            the String that contains a detailed message
+	 * @param e 
+	 * 			the original cause of the exception
 	 */
-	public MissingConfigurationException(String message) {
-		super(message);
+	public MissingConfigurationException(String message, Exception e) {
+		super(message, e);
 	}
 }
