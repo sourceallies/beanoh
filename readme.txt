@@ -1,7 +1,7 @@
 == Overview
 Beanoh, pronounced \'beanˌō\, is a simple open source way to verify you Spring context.
 Teams that leverage Beanoh spend less time focusing on 
-configuring Spring and more time adding business value.  Visit our website at http://beanoh.org.
+configuring Spring and more time adding business value.
 
 == Features
 1. Verify that all of your beans are wired correctly
